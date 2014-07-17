@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>数字显示控件</title>
+    <style>
+        #div_view_digital
+        {
+            position: absolute;
+            top: 250px;
+            left: 200px;
+        }
+
+        #div_operate
+        {
+            position: absolute;
+            top: 200px;
+        }
+    </style>
+    <script src="jquery.js"></script>
+    <script src="digitalControl/digital.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="div_view_digital"></div>
+    <div id="div_operate">
+        <input type="text" id="txt_digital" name="txt_digital" />
+        <input type="button" id="btn_view" name="btn_view" value="查看" />
+    </div>
+</body>
+</html>
