@@ -65,21 +65,30 @@ Number.prototype.toDigital = function (digital_size, line_length, line_diameter,
 
 //生成一个自定义的数字
 String.prototype.createDigital = function (digital_size, line_length, line_diameter, line_incline, spacing, skin, index) {
-    var digital = new String();
-
     if (this.length < 1) {
-        return digital;
+        return "";
+    }
+
+    var digital = new String();
+    var js = document.scripts || document.getElementsByTagName("script");
+    var jsUrl = new String();
+
+    for (var i = 0; i < js.length; i++) {
+        if (js[i].src.lastIndexOf("digital.js") >= 0) {
+            jsUrl = js[i].src.substring(0, js[i].src.lastIndexOf("/"));
+            break;
+        }
     }
 
     digital = "<div class=\"div_digital\">" +
-       "<img class=\"img_a img_h " + ((this[0] != "1" && this[0] != "4") ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/h.png\" alt=\"a\" style=\"top: 0px; left: " + (digital_size * index * (1 + spacing) + line_incline * 5) + "px;\" />" +
-       "<img class=\"img_b img_v " + ((this[0] != "5" && this[0] != "6") ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/v.png\" alt=\"b\" style=\"top: 0px; left: " + (digital_size * index * (1 + spacing) + line_incline * 4 + line_length - line_diameter) + "px;\" />" +
-       "<img class=\"img_c img_v " + (this[0] != "2" ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/v.png\" alt=\"c\" style=\"top: " + (line_length - line_diameter) + "px; left: " + (digital_size * index * (1 + spacing) + line_incline + line_length - line_diameter) + "px;\" />" +
-       "<img class=\"img_d img_h " + ((this[0] != "1" && this[0] != "4" && this[0] != "7") ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/h.png\" alt=\"d\" style=\"top: " + (line_length * 2 - line_diameter * 2) + "px; left: " + digital_size * index * (1 + spacing) + "px;\" />" +
-       "<img class=\"img_e img_v " + ((this[0] == "0" || this[0] == "2" || this[0] == "6" || this[0] == "8") ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/v.png\" alt=\"e\" style=\"top: " + (line_length - line_diameter) + "px; left: " + (digital_size * index * (1 + spacing) + line_incline) + "px;\" />" +
-       "<img class=\"img_f img_v " + ((this[0] != "1" && this[0] != "2" && this[0] != "3" && this[0] != "7") ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/v.png\" alt=\"f\" style=\"top: 0px; left: " + (digital_size * index * (1 + spacing) + line_incline * 4) + "px;\" />" +
-       "<img class=\"img_g img_h " + ((this[0] != "0" && this[0] != "1" && this[0] != "7") ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/h.png\" alt=\"g\" style=\"top: " + (line_length - line_diameter) + "px; left: " + (digital_size * index * (1 + spacing) + line_incline * 2) + "px;\" />" +
-       "<img class=\"img_p " + (this[1] == "." ? "img_show" : "img_hide") + "\" src=\"digitalControl/skins/" + skin + "/p.png\" alt=\"p\" style=\"top: " + (line_length * 2 - line_diameter * 2) + "px; left: " + (digital_size * index * (1 + spacing) + line_length + line_diameter / 4) + "px;\" />" +
+       "<img class=\"img_a img_h " + ((this[0] != "1" && this[0] != "4") ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/h.png\" alt=\"a\" style=\"top: 0px; left: " + (digital_size * index * (1 + spacing) + line_incline * 5) + "px;\" />" +
+       "<img class=\"img_b img_v " + ((this[0] != "5" && this[0] != "6") ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/v.png\" alt=\"b\" style=\"top: 0px; left: " + (digital_size * index * (1 + spacing) + line_incline * 4 + line_length - line_diameter) + "px;\" />" +
+       "<img class=\"img_c img_v " + (this[0] != "2" ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/v.png\" alt=\"c\" style=\"top: " + (line_length - line_diameter) + "px; left: " + (digital_size * index * (1 + spacing) + line_incline + line_length - line_diameter) + "px;\" />" +
+       "<img class=\"img_d img_h " + ((this[0] != "1" && this[0] != "4" && this[0] != "7") ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/h.png\" alt=\"d\" style=\"top: " + (line_length * 2 - line_diameter * 2) + "px; left: " + digital_size * index * (1 + spacing) + "px;\" />" +
+       "<img class=\"img_e img_v " + ((this[0] == "0" || this[0] == "2" || this[0] == "6" || this[0] == "8") ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/v.png\" alt=\"e\" style=\"top: " + (line_length - line_diameter) + "px; left: " + (digital_size * index * (1 + spacing) + line_incline) + "px;\" />" +
+       "<img class=\"img_f img_v " + ((this[0] != "1" && this[0] != "2" && this[0] != "3" && this[0] != "7") ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/v.png\" alt=\"f\" style=\"top: 0px; left: " + (digital_size * index * (1 + spacing) + line_incline * 4) + "px;\" />" +
+       "<img class=\"img_g img_h " + ((this[0] != "0" && this[0] != "1" && this[0] != "7") ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/h.png\" alt=\"g\" style=\"top: " + (line_length - line_diameter) + "px; left: " + (digital_size * index * (1 + spacing) + line_incline * 2) + "px;\" />" +
+       "<img class=\"img_p " + (this[1] == "." ? "img_show" : "img_hide") + "\" src=\"" + jsUrl + "/skins/" + skin + "/p.png\" alt=\"p\" style=\"top: " + (line_length * 2 - line_diameter * 2) + "px; left: " + (digital_size * index * (1 + spacing) + line_length + line_diameter / 4) + "px;\" />" +
    "</div>";
 
     return digital;
